@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Xml;
 using System.Xml.Serialization;
+using static PPP_Lab9.RatingSystemExtentions;
 
 namespace PPP_Lab9
 {
@@ -51,12 +52,19 @@ namespace PPP_Lab9
             Console.WriteLine("После сортировки по іd на убывание:");
             consolePrintListOfKeyValuePair(ratingList);
 
+            //использование лямбда-выражений
             ratingList = RatingSystemExtentions.Sort(ratingSystem, (left, right) => left.Age > right.Age);
             Console.WriteLine("После сортировки по возрасту от меньшего к большему:");
             consolePrintListOfKeyValuePair(ratingList);
 
-            ratingList = RatingSystemExtentions.Sort(ratingSystem, (left, right) => left.Age < right.Age);
-            Console.WriteLine("После сортировки по возрасту на большего к меньшему:");
+            //использование анонимного метода
+            CompareDelegate orderByDescendingAgeLeft = delegate (User left, User right)
+            {
+                return left.Age < right.Age;
+            };
+
+            ratingList = RatingSystemExtentions.Sort(ratingSystem, orderByDescendingAgeLeft);
+            Console.WriteLine("После сортировки по возрасту от большего к меньшему:");
             consolePrintListOfKeyValuePair(ratingList);
 
             ratingList = RatingSystemExtentions.Search(ratingSystem,"Al", User.SearchByFirstName);
