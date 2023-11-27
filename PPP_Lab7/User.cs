@@ -124,7 +124,14 @@ namespace PPP_Lab9
         /// </returns>
         public static bool OrderByFirstNameLeft(User left, User right)
         {
-            return string.Compare(left.FirstName, right.FirstName, StringComparison.Ordinal) > 0;
+            if(left!=null && right != null)
+            {
+                return string.Compare(left.FirstName, right.FirstName, StringComparison.Ordinal) > 0;
+            }
+            else
+            {
+                throw new ArgumentNullException("Аргументы функции OrderByFirstNameLeft не могут быть null");
+            }
         }
 
         /// <summary>
@@ -138,7 +145,15 @@ namespace PPP_Lab9
         /// </returns>
         public static bool OrderByDescendingNameLeft(User left, User right)
         {
-            return !OrderByFirstNameLeft(left, right);
+            if (left != null && right != null)
+            {
+                return !OrderByFirstNameLeft(left, right);
+            }
+            else
+            {
+                throw new ArgumentNullException("Аргументы функции OrderByDescendingNameLeft не могут быть null");
+            }
+           
         }
 
         /// <summary>
@@ -152,7 +167,14 @@ namespace PPP_Lab9
         /// </returns>
         public static bool OrderByIdLeft(User left, User right)
         {
-            return left.Id > right.Id;
+            if (left != null && right != null)
+            {
+                return left.Id > right.Id;
+            }
+            else
+            {
+                throw new ArgumentNullException("Аргументы функции OrderByIdLeft не могут быть null");
+            }
         }
 
         /// <summary>
@@ -166,7 +188,14 @@ namespace PPP_Lab9
         /// </returns>
         public static bool OrderByIdDescendingIdLeft(User left, User right)
         {
-            return !OrderByIdLeft(left,right);
+            if (left != null && right != null)
+            {
+                return !OrderByIdLeft(left, right);
+            }
+            else
+            {
+                throw new ArgumentNullException("Аргументы функции OrderByIdDescendingIdLeft не могут быть null");
+            }
         }
 
         /// <summary>
@@ -180,7 +209,15 @@ namespace PPP_Lab9
         /// </returns>
         public static bool SearchByFirstName(User user, string searchValue)
         {
-            return user.FirstName.Contains(searchValue, StringComparison.OrdinalIgnoreCase);
+            if (user != null && searchValue != "")
+            {
+                return user.FirstName.Contains(searchValue, StringComparison.OrdinalIgnoreCase);
+            }
+            else
+            {
+                throw new ArgumentNullException("Аргументы функции SearchByFirstName не могут быть null или пустыми");
+            }
+            
         }
 
         /// <summary>
